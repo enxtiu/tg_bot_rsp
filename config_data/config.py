@@ -9,8 +9,7 @@ logger = getLogger(__name__)
 
 @dataclass
 class TgBot:
-    token: str
-
+    token: str | None
 
 @dataclass
 class Config:
@@ -22,7 +21,7 @@ def load_config() -> Config:
     from dotenv import load_dotenv, find_dotenv
 
     load_dotenv(find_dotenv())
-    logger.debug("Настройка конфигурации")
+    logger.debug("Init config")
     return Config(tg_bot=TgBot(token=os.getenv('TOKEN')))
 
 if __name__ == '__main__':
